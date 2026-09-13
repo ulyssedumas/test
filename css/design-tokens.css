@@ -1,0 +1,107 @@
+/* ==========================================================================
+   SAGEFLOW DESIGN TOKENS & THEMING SYSTEM
+   Official Colors: #152538, #F0B9BD, #FBF8F5, #F0E8DF, #523E30, #C7E0F0, #1C375C, #DE6349, #0F1924
+   ========================================================================== */
+
+:root {
+  /* Raw Palette */
+  --c-navy: #152538;          /* Bleu Nuit Profond (Autorité & SAGE) */
+  --c-navy-hover: #0d1824;
+  --c-pink: #F0B9BD;          /* Rose Poudré Pastel (Maternité & Cœur) */
+  --c-pink-light: #FDF4F5;
+  --c-pink-border: #F7D4D7;
+  --c-skin-light: #FBF8F5;    /* Beige Peau Nacre (Fond Light Mode) */
+  --c-skin-linen: #F0E8DF;    /* Beige Lin Organique (Surfaces & Cartes) */
+  --c-skin-border: #E2D7CC;   /* Bordure feutrée */
+  --c-brown: #523E30;         /* Marron Chaud Profond (Texte Contraste AAA & FLOW) */
+  --c-brown-muted: #7E6B5D;   /* Texte secondaire */
+  --c-brown-light: #A39284;
+  --c-blue-sky: #C7E0F0;      /* Bleu Ciel Pastel (Sérénité & Métriques SA) */
+  --c-blue-sky-bg: #EBF4FA;
+  --c-blue-ocean: #1C375C;    /* Bleu Océan Médical (Hôpital & Maternité) */
+  --c-terracotta: #DE6349;    /* Terracotta / Corail Doux (Urgences & Alertes) */
+  --c-terracotta-bg: #FCEDE9;
+  --c-dark-bg: #0F1924;       /* Bleu Nuit Nocturne (Fond Dark Mode) */
+  --c-dark-surface: #162434;  /* Surface Dark Mode */
+  --c-dark-card: #1D2E42;     /* Cartes Dark Mode */
+  --c-dark-border: #2C425D;   /* Bordures Dark Mode */
+  --c-dark-text: #FBF8F5;     /* Texte Dark Mode */
+  --c-dark-muted: #9EAFBF;    /* Texte atténué Dark Mode */
+
+  /* Semantic Theme Variables (Light Default) */
+  --bg-app: var(--c-skin-light);
+  --bg-surface: var(--c-skin-linen);
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #FAF6F1;
+  --bg-glass: rgba(251, 248, 245, 0.85);
+  --bg-glass-card: rgba(255, 255, 255, 0.8);
+  --border-app: var(--c-skin-border);
+  --border-card: rgba(226, 215, 204, 0.8);
+
+  --text-main: var(--c-brown);
+  --text-muted: var(--c-brown-muted);
+  --text-light: var(--c-brown-light);
+  --text-on-navy: #FBF8F5;
+
+  --action-primary: var(--c-navy);
+  --action-primary-hover: var(--c-navy-hover);
+  --action-primary-text: #FFFFFF;
+
+  --accent-pink: var(--c-pink);
+  --accent-pink-text: var(--c-brown);
+  --accent-blue-sky: var(--c-blue-sky);
+  --accent-blue-ocean: var(--c-blue-ocean);
+  --accent-danger: var(--c-terracotta);
+  --accent-danger-bg: var(--c-terracotta-bg);
+
+  /* Fonts */
+  --font-logo: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, Consolas, monospace;
+
+  /* Elevations */
+  --shadow-sm: 0 2px 5px rgba(21, 37, 56, 0.04);
+  --shadow-md: 0 6px 16px -2px rgba(21, 37, 56, 0.07), 0 2px 6px -1px rgba(21, 37, 56, 0.04);
+  --shadow-lg: 0 14px 30px -4px rgba(21, 37, 56, 0.09), 0 4px 10px -2px rgba(21, 37, 56, 0.05);
+  --shadow-glass: 0 8px 32px 0 rgba(21, 37, 56, 0.08);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+}
+
+/* Dark Mode Overrides (Salle de Naissance / Garde de Nuit) */
+.dark {
+  --bg-app: var(--c-dark-bg);
+  --bg-surface: var(--c-dark-surface);
+  --bg-card: var(--c-dark-card);
+  --bg-card-subtle: #19283B;
+  --bg-glass: rgba(15, 25, 36, 0.88);
+  --bg-glass-card: rgba(29, 46, 66, 0.85);
+  --border-app: var(--c-dark-border);
+  --border-card: rgba(44, 66, 93, 0.85);
+
+  --text-main: var(--c-dark-text);
+  --text-muted: var(--c-dark-muted);
+  --text-light: #7A8E9E;
+  --text-on-navy: #FFFFFF;
+
+  --action-primary: var(--c-pink);
+  --action-primary-hover: #F2C7CA;
+  --action-primary-text: var(--c-navy);
+
+  --accent-pink: var(--c-pink);
+  --accent-pink-text: var(--c-navy);
+  --accent-blue-sky: #A8D3EE;
+  --accent-blue-ocean: #34619D;
+  --accent-danger: #F07C64;
+  --accent-danger-bg: rgba(222, 99, 73, 0.2);
+
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 20px -2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 18px 36px -4px rgba(0, 0, 0, 0.45);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+}

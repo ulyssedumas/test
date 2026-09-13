@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SageFlow — Suite de Simulations UI/UX Complète (Pro, Maternité, Patiente)</title>
+  
+  <!-- Design Tokens, Glassmorphism & Micro-Animations -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/glassmorphism.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Tailwind CSS Engine for utility classes -->
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+
+  <style>
+    /* Global Container Styles */
+    body {
+      background-color: #EAE3DA;
+      background-image: radial-gradient(#D8CEC2 1px, transparent 1px);
+      background-size: 24px 24px;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      overflow: hidden;
+    }
+    .dark body {
+      background-color: #0A111A;
+      background-image: radial-gradient(#1B2838 1px, transparent 1px);
+    }
+    
+    /* Device Shell Bezels */
+    .device-frame {
+      box-shadow: 0 25px 60px -15px rgba(21, 37, 56, 0.3), 0 0 0 1px rgba(21, 37, 56, 0.05);
+      background-color: var(--bg-app);
+    }
+    .dark .device-frame {
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(126, 107, 93, 0.25);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(126, 107, 93, 0.45);
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col antialiased select-none">
+
+  <!-- Master Control Header (Top Bar) -->
+  <header class="bg-[#152538] text-white px-5 py-2.5 flex items-center justify-between shrink-0 shadow-lg z-50">
+    <!-- Brand Lockup -->
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-[#F0B9BD] flex items-center justify-center p-1 shadow-sm">
+        <img src="assets/logo-icon.svg" alt="SageFlow" class="w-full h-full">
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-['Montserrat'] font-bold text-sm tracking-tight text-white">
+            Sage<span class="text-[#F0B9BD]">Flow</span>
+          </span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1C375C] text-[#C7E0F0] border border-[#2A4C78]">
+            UI/UX Studio v2.3
+          </span>
+        </div>
+        <div class="text-[10px] text-gray-300">Simulation Interactive des 3 Applications</div>
+      </div>
+    </div>
+
+    <!-- App Switcher (Pro, Maternité, Patiente) -->
+    <div class="flex items-center bg-[#0F1924] p-1 rounded-xl border border-[#2B3E55]">
+      <button data-app-btn="pro" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all">
+        <span>💻</span> SageFlow PRO
+      </button>
+      <button data-app-btn="mater" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all">
+        <span>🏥</span> SageFlow MATER
+      </button>
+      <button data-app-btn="patiente" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all">
+        <span>📱</span> SageFlow APP
+      </button>
+    </div>
+
+    <!-- Screen Navigator Dropdown -->
+    <div class="flex items-center gap-2">
+      <label class="text-[11px] text-gray-300 hidden xl:block font-medium">Écran actif :</label>
+      <select id="screen-select" class="bg-[#0F1924] text-white border border-[#2B3E55] rounded-lg px-2.5 py-1.5 text-xs font-medium focus:outline-none focus:border-[#F0B9BD]">
+        <!-- Populated dynamically by AppSwitcher -->
+      </select>
+    </div>
+
+    <!-- Right Controls : Device Frames & Dark Mode -->
+    <div class="flex items-center gap-3">
+      <!-- Device Selector -->
+      <div class="flex items-center bg-[#0F1924] p-0.5 rounded-lg border border-[#2B3E55] text-xs">
+        <button data-device-btn="tablet" class="px-2 py-1 rounded text-[11px]" title="Tablette Paysage (iPad Pro 1194x834)">
+          Tablet
+        </button>
+        <button data-device-btn="desktop" class="px-2 py-1 rounded text-[11px]" title="Desktop Hospitalier (1440x900)">
+          Desktop
+        </button>
+        <button data-device-btn="mobile" class="px-2 py-1 rounded text-[11px]" title="Smartphone (iPhone 15 Pro)">
+          Mobile
+        </button>
+        <button data-device-btn="responsive" class="px-2 py-1 rounded text-[11px]" title="Vue Fluide Plein Écran">
+          Fluide
+        </button>
+      </div>
+
+      <!-- Light / Dark Mode Button -->
+      <button id="btn-toggle-dark" class="flex items-center gap-1.5 bg-[#0F1924] hover:bg-[#1C2C3E] text-xs px-2.5 py-1.5 rounded-lg border border-[#2B3E55] text-white transition-colors">
+        <span id="dark-toggle-label">☀️ Mode Cabinet</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Simulation Stage (Central Viewport with Device Frame) -->
+  <main class="flex-1 flex items-center justify-center p-4 overflow-hidden relative">
+    
+    <!-- Virtual Device Container -->
+    <div id="device-frame-container" class="device-frame shadow-2xl transition-all duration-300 relative flex flex-col overflow-hidden">
+      <!-- Active App Content Rendered Here -->
+      <div id="screen-viewport" class="w-full h-full flex flex-col overflow-hidden bg-[var(--bg-app)]">
+        <!-- Injected by ProSimulator, MaterSimulator, PatienteSimulator -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Quick Help -->
+  <footer class="glass-header px-4 py-1.5 flex items-center justify-between text-[11px] text-[var(--text-muted)] shrink-0 z-40">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+      <span>Palette Officielle : #152538 (Nuit), #F0B9BD (Rose), #FBF8F5 (Nacre), #523E30 (Marron), #DE6349 (Terracotta)</span>
+    </div>
+    <div>
+      <span>14 Écrans Pro • 5 Modules Maternité • 7 Modules Patiente • Conformité Cahier des Charges v2.3</span>
+    </div>
+  </footer>
+
+  <!-- Simulation Logic Scripts -->
+  <script src="js/bcf-canvas.js"></script>
+  <script src="js/pro-simulator.js"></script>
+  <script src="js/mater-simulator.js"></script>
+  <script src="js/patiente-simulator.js"></script>
+  <script src="js/app-switcher.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AppSwitcher.init();
+    });
+  </script>
+</body>
+</html>
