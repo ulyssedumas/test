@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NatisFlow Pro — Accueil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Brand tokens ───────────────────────────────────────────── */
+    :root {
+      --navy:    #1d2a3b;
+      --terra:   #de6248;
+      --beige:   #FBF8F5;
+      --linen:   #F0E8DF;
+      --white:   #FFFFFF;
+      --border:  #E8E2DA;
+      --text-primary:   #1a1a2e;
+      --text-secondary: #64748b;
+      --text-muted:     #94a3b8;
+      --success: #16a34a;
+      --danger:  #dc2626;
+      --info:    #3b82f6;
+      --warn:    #f59e0b;
+      --shadow-sm:  0 1px 3px rgba(29,42,59,.06), 0 1px 2px rgba(29,42,59,.04);
+      --shadow-md:  0 4px 16px rgba(29,42,59,.08), 0 2px 6px rgba(29,42,59,.05);
+      --shadow-lg:  0 8px 32px rgba(29,42,59,.10), 0 4px 12px rgba(29,42,59,.06);
+      --radius-sm:  8px;
+      --radius-md:  12px;
+      --radius-lg:  18px;
+      --radius-xl:  24px;
+      --font: 'Montserrat', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ─── Outer shell (simulates tablet on desktop) ──────────────── */
+    body {
+      font-family: var(--font);
+      background: #CBD5E1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 32px 20px;
+    }
+
+    .tablet-frame {
+      width: 1180px;
+      min-height: 820px;
+      background: var(--beige);
+      border-radius: 28px;
+      box-shadow: 0 32px 80px rgba(0,0,0,.20), 0 8px 24px rgba(0,0,0,.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────────── */
+    .header {
+      background: rgba(251,248,245,.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Logo */
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      line-height: 1;
+    }
+    .logo-natis { color: var(--navy); }
+    .logo-flow  { color: var(--terra); }
+    .logo-badge {
+      background: var(--navy);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      align-self: center;
+      margin-left: 2px;
+    }
+    .header-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      margin: 0 14px;
+    }
+    .header-location {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* Right cluster */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .sync-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--success);
+      cursor: default;
+    }
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .7; transform: scale(1.2); }
+    }
+    .profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 6px 12px 6px 6px;
+      cursor: pointer;
+      transition: box-shadow .18s;
+    }
+    .profile-btn:hover { box-shadow: var(--shadow-md); }
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: .5px;
+      flex-shrink: 0;
+    }
+    .profile-info { line-height: 1.25; }
+    .profile-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .profile-role {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .chevron-down {
+      color: var(--text-muted);
+      font-size: 10px;
+      margin-left: 2px;
+    }
+
+    /* Notification bell */
+    .notif-btn {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: box-shadow .18s;
+      color: var(--text-secondary);
+    }
+    .notif-btn:hover { box-shadow: var(--shadow-md); }
+    .notif-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--terra);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--beige);
+    }
+
+    /* ─── MAIN SCROLLABLE ─────────────────────────────────────────── */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .main-content::-webkit-scrollbar { width: 5px; }
+    .main-content::-webkit-scrollbar-track { background: transparent; }
+    .main-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+    /* ─── SEARCH BAR ─────────────────────────────────────────────── */
+    .search-bar-wrap {
+      display: flex;
+      justify-content: center;
+    }
+    .search-bar {
+      width: 100%;
+      max-width: 620px;
+      position: relative;
+    }
+    .search-bar svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .search-bar input {
+      width: 100%;
+      height: 48px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+      padding: 0 16px 0 48px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+      outline: none;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-bar input::placeholder { color: var(--text-muted); font-weight: 400; }
+    .search-bar input:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(29,42,59,.08), var(--shadow-sm);
+    }
+    .search-shortcut {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--linen);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    /* ─── NAV TABS (pill cards) ───────────────────────────────────── */
+    .nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .nav-tab {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all .2s;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-tab:hover {
+      border-color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .nav-tab.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      box-shadow: var(--shadow-md);
+    }
+    .nav-tab-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+    .nav-tab.active .nav-tab-icon { background: rgba(255,255,255,.15); }
+    .nav-tab-icon svg { color: var(--navy); transition: color .2s; }
+    .nav-tab.active .nav-tab-icon svg { color: #fff; }
+    .nav-tab-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.2;
+      transition: color .2s;
+    }
+    .nav-tab.active .nav-tab-label { color: rgba(255,255,255,.9); }
+    .nav-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--terra);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--white);
+    }
+    .nav-tab.active .nav-badge { border-color: var(--navy); }
+
+    /* ─── BODY GRID (2 cols) ─────────────────────────────────────── */
+    .body-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* ─── CARD SHARED ─────────────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--linen);
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--terra);
+      flex-shrink: 0;
+    }
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ─── FILTER ROW ─────────────────────────────────────────────── */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-bottom: 1px solid var(--linen);
+      background: #fdfcfb;
+    }
+    .filter-row-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+    select.filter-select {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 5px 10px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 24px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      transition: border-color .2s;
+    }
+    select.filter-select:focus { border-color: var(--navy); }
+    .filter-btn {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 5px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all .18s;
+    }
+    .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-primary {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--terra);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 6px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all .18s;
+      letter-spacing: .2px;
+      margin-left: auto;
+    }
+    .btn-primary:hover { background: #c9533c; box-shadow: 0 4px 12px rgba(222,98,72,.35); }
+    .btn-navy {
+      background: var(--navy);
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: all .18s;
+      white-space: nowrap;
+    }
+    .btn-navy:hover { background: #253345; }
+    .btn-outline {
+      background: transparent;
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--terra);
+      border: 1.5px solid var(--terra);
+      border-radius: var(--radius-sm);
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: all .18s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { background: rgba(222,98,72,.06); }
+
+    /* ─── TABLE ──────────────────────────────────────────────────── */
+    .consult-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .consult-table thead th {
+      padding: 10px 22px;
+      text-align: left;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: #fafaf9;
+      border-bottom: 1px solid var(--linen);
+      white-space: nowrap;
+    }
+    .consult-table thead th.center { text-align: center; }
+    .consult-table tbody tr {
+      border-bottom: 1px solid var(--linen);
+      transition: background .15s;
+      cursor: pointer;
+    }
+    .consult-table tbody tr:last-child { border-bottom: none; }
+    .consult-table tbody tr:hover { background: #fdfaf8; }
+    .consult-table tbody tr.urgence {
+      background: #fff5f5;
+    }
+    .consult-table tbody tr.urgence:hover { background: #fff0f0; }
+    .consult-table td {
+      padding: 14px 22px;
+      vertical-align: middle;
+    }
+    /* Patiente cell */
+    .pat-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .pat-name.urgence-text { color: var(--danger); }
+    .pat-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pat-alert {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 1px 5px;
+    }
+    .urgence-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #fee2e2;
+      color: var(--danger);
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+    /* Terme badge */
+    .terme-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      white-space: nowrap;
+    }
+    .terme-badge.late { background: #fef9c3; color: #a16207; border-color: #fde68a; }
+    .terme-badge.empty {
+      background: var(--linen);
+      color: var(--text-muted);
+      border-color: var(--border);
+    }
+    /* Type cell */
+    .type-text {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    /* Heure */
+    .heure-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+    /* Col alignment */
+    .col-terme, .col-type, .col-heure { text-align: center; }
+    .col-statut { text-align: right; }
+
+    /* ─── SIDE COLUMN ────────────────────────────────────────────── */
+    .side-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ─── STATS MINI CARDS ────────────────────────────────────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .stat-value.terra { color: var(--terra); }
+    .stat-value.navy  { color: var(--navy); }
+    .stat-sub {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .stat-trend {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .stat-trend.up   { color: var(--success); }
+    .stat-trend.warn { color: var(--warn); }
+
+    /* ─── QUICK ACTIONS ──────────────────────────────────────────── */
+    .quick-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .quick-header {
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid var(--linen);
+    }
+    .quick-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .quick-list { padding: 6px 0; }
+    .quick-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 18px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .quick-item:hover { background: var(--beige); }
+    .quick-item-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .quick-item-text {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      line-height: 1.2;
+    }
+    .quick-item-sub {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .quick-arrow {
+      margin-left: auto;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ─── ALERT BANNER ───────────────────────────────────────────── */
+    .alert-banner {
+      background: #fff7ed;
+      border: 1.5px solid #fdba74;
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .alert-content { flex: 1; }
+    .alert-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #92400e;
+      margin-bottom: 2px;
+    }
+    .alert-body {
+      font-size: 11px;
+      color: #a16207;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .alert-dismiss {
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: #d97706;
+      cursor: pointer;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    /* ─── TODAY LABEL ────────────────────────────────────────────── */
+    .today-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .today-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .today-sub {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .today-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--linen);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+    }
+
+    /* ─── ANNONCES / TO-DO ───────────────────────────────────────── */
+    .todo-list { padding: 0 0 4px; }
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--linen);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .todo-item:last-child { border-bottom: none; }
+    .todo-item:hover { background: var(--beige); }
+    .todo-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .18s;
+    }
+    .todo-check.done {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+      font-size: 10px;
+    }
+    .todo-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+    .todo-text.done { text-decoration: line-through; color: var(--text-muted); }
+    .todo-time {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ─── PROGRESS BAR ───────────────────────────────────────────── */
+    .progress-bar-wrap {
+      background: var(--linen);
+      border-radius: 99px;
+      height: 6px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--navy), var(--terra));
+      transition: width .6s ease;
+    }
+
+    /* ─── FOOTER BOTTOM STATUS BAR ───────────────────────────────── */
+    .status-bar {
+      background: var(--navy);
+      padding: 8px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: rgba(255,255,255,.6);
+    }
+    .status-item-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .status-item-dot.green { background: #4ade80; }
+    .status-item-dot.orange { background: #fb923c; }
+    .status-right {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: rgba(255,255,255,.4);
+    }
+
+    /* ─── SVG ICONS (inline) ─────────────────────────────────────── */
+    svg { display: block; }
+
+    /* ─── Hover animations ───────────────────────────────────────── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .main-content > * { animation: fadeIn .3s ease both; }
+    .main-content > *:nth-child(1) { animation-delay: .04s; }
+    .main-content > *:nth-child(2) { animation-delay: .08s; }
+    .main-content > *:nth-child(3) { animation-delay: .12s; }
+    .main-content > *:nth-child(4) { animation-delay: .18s; }
+  </style>
+</head>
+<body>
+
+<div class="tablet-frame">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════════════ -->
+  <header class="header">
+    <!-- Left: Logo + location -->
+    <div style="display:flex;align-items:center;">
+      <div class="logo-group">
+        <!-- NatisFlow logo SVG -->
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="#1d2a3b"/>
+          <path d="M8 22 L12 10 L16 18 L20 12 L24 22" stroke="#de6248" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="24" cy="22" r="2" fill="#de6248"/>
+        </svg>
+        <span class="logo-text">
+          <span class="logo-natis">Natis</span><span class="logo-flow">Flow</span>
+        </span>
+        <span class="logo-badge">PRO</span>
+      </div>
+      <div class="header-sep"></div>
+      <span class="header-location">Accueil</span>
+    </div>
+
+    <!-- Right: Sync + Notif + Profile -->
+    <div class="header-right">
+      <div class="sync-badge">
+        <span class="sync-dot"></span>
+        100% Synchronisé
+      </div>
+      <button class="notif-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <span class="notif-count">3</span>
+      </button>
+      <button class="profile-btn">
+        <div class="avatar">CD</div>
+        <div class="profile-info">
+          <div class="profile-name">Claire Dupont</div>
+          <div class="profile-role">Sage-Femme DE • Libéral</div>
+        </div>
+        <span class="chevron-down">▾</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ MAIN ═════════════════════════════════ -->
+  <main class="main-content">
+
+    <!-- 1. Search bar -->
+    <div class="search-bar-wrap">
+      <div class="search-bar">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Rechercher une patiente, une fonctionnalité, une action…" />
+        <span class="search-shortcut">⌘ K</span>
+      </div>
+    </div>
+
+    <!-- 2. Nav tabs -->
+    <nav class="nav-tabs">
+
+      <!-- Fichier Patientes (active) -->
+      <button class="nav-tab active">
+        <div class="nav-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+            <path d="M9 12h6M9 16h4"/>
+          </svg>
+        </div>
+        <span class="nav-tab-label">Fichier<br/>Patientes</span>
+      </button>
+
+      <!-- Calendrier -->
+      <button class="nav-tab">
+        <div class="nav-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+        </div>
+        <span class="nav-tab-label">Calendrier</span>
+      </button>
+
+      <!-- Notifications -->
+      <button class="nav-tab" style="position:relative;">
+        <span class="nav-badge">3</span>
+        <div class="nav-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <span class="nav-tab-label">Notifications</span>
+      </button>
+
+      <!-- Facturation -->
+      <button class="nav-tab">
+        <div class="nav-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>
+            <path d="M6 15h2M10 15h4"/>
+          </svg>
+        </div>
+        <span class="nav-tab-label">Facturation<br/>SESAM</span>
+      </button>
+
+      <!-- Visites Domicile -->
+      <button class="nav-tab">
+        <div class="nav-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><polyline points="9 21 9 12 15 12 15 21"/>
+          </svg>
+        </div>
+        <span class="nav-tab-label">Visites<br/>Domicile</span>
+      </button>
+
+      <!-- Autres -->
+      <button class="nav-tab">
+        <div class="nav-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <span class="nav-tab-label">Autres</span>
+      </button>
+
+    </nav>
+
+    <!-- 3. Body grid: main + sidebar -->
+    <div class="body-grid">
+
+      <!-- ── MAIN: Consultations du jour ─────────────────────────── -->
+      <div>
+        <!-- Page title -->
+        <div class="today-header" style="margin-bottom:14px;">
+          <div>
+            <div class="today-title">Consultations du jour</div>
+            <div class="today-sub">Lundi 28 septembre 2026 · 6 rendez-vous planifiés</div>
+          </div>
+          <div class="today-date">Semaine 39 · T4 2026</div>
+        </div>
+
+        <!-- Alert banner (urgence) -->
+        <div class="alert-banner" style="margin-bottom:14px;">
+          <span class="alert-icon">⚠️</span>
+          <div class="alert-content">
+            <div class="alert-title">Urgence signalée — Sophie Giraud (33 SA)</div>
+            <div class="alert-body">Contractions irrégulières depuis 22h. Dossier d'orientation maternité pré-rempli disponible. Action requise avant 10h00.</div>
+          </div>
+          <button class="alert-dismiss">✕</button>
+        </div>
+
+        <!-- Table card -->
+        <div class="card">
+          <!-- Header -->
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-dot"></span>
+              Planning du jour
+            </div>
+            <div class="card-actions">
+              <!-- nothing here, actions in filter row -->
+            </div>
+          </div>
+
+          <!-- Filter row -->
+          <div class="filter-row">
+            <span class="filter-row-label">Voir :</span>
+            <select class="filter-select">
+              <option>Aujourd'hui</option>
+              <option>Cette semaine</option>
+              <option>Ce mois</option>
+            </select>
+            <select class="filter-select">
+              <option>Tous types</option>
+              <option>Suivi grossesse</option>
+              <option>EPP</option>
+              <option>Gynécologie</option>
+              <option>Urgences</option>
+              <option>Domicile</option>
+            </select>
+            <button class="filter-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+              Filtrer
+            </button>
+            <button class="btn-primary">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Nouvelle Consultation
+            </button>
+          </div>
+
+          <!-- Table -->
+          <table class="consult-table">
+            <thead>
+              <tr>
+                <th>Patiente</th>
+                <th class="center">Terme</th>
+                <th class="center">Type</th>
+                <th class="center">Heure</th>
+                <th style="text-align:right;padding-right:22px;">Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- Row 1 : Normal -->
+              <tr>
+                <td>
+                  <div class="pat-name">Élodie Martin <span style="font-weight:500;color:var(--text-muted);font-size:12px;">(31 ans)</span></div>
+                  <div class="pat-sub">
+                    G2P1
+                    <span class="pat-alert">⚠ Allergie Pénicilline</span>
+                  </div>
+                </td>
+                <td class="col-terme"><span class="terme-badge">28 SA + 3j</span></td>
+                <td class="col-type"><span class="type-text">Suivi 7<sup>e</sup> mois</span></td>
+                <td class="col-heure"><span class="heure-text">09:00</span></td>
+                <td class="col-statut"><button class="btn-navy">Ouvrir</button></td>
+              </tr>
+
+              <!-- Row 2 : URGENCE -->
+              <tr class="urgence">
+                <td>
+                  <div class="pat-name urgence-text">Sophie Giraud <span style="font-weight:500;font-size:12px;">(28 ans)</span></div>
+                  <div class="pat-sub">
+                    G1P0
+                    <span class="urgence-pill">🚨 Urgence</span>
+                  </div>
+                </td>
+                <td class="col-terme"><span class="terme-badge late">33 SA</span></td>
+                <td class="col-type"><span class="type-text" style="color:var(--danger);font-weight:700;">Urgence obstétricale</span></td>
+                <td class="col-heure"><span class="heure-text" style="color:var(--danger);">10:00</span></td>
+                <td class="col-statut">
+                  <button class="btn-navy" style="background:#dc2626;">Ouvrir</button>
+                </td>
+              </tr>
+
+              <!-- Row 3 : EPP -->
+              <tr>
+                <td>
+                  <div class="pat-name">Marion Petit <span style="font-weight:500;color:var(--text-muted);font-size:12px;">(26 ans)</span></div>
+                  <div class="pat-sub">G1P0 · Entretien prénatal précoce</div>
+                </td>
+                <td class="col-terme"><span class="terme-badge">16 SA</span></td>
+                <td class="col-type"><span class="type-text">EPP (1<sup>er</sup>)</span></td>
+                <td class="col-heure"><span class="heure-text">12:00</span></td>
+                <td class="col-statut"><button class="btn-navy">Ouvrir</button></td>
+              </tr>
+
+              <!-- Row 4 : Gynéco (pas de terme) -->
+              <tr>
+                <td>
+                  <div class="pat-name">Laura Mercier <span style="font-weight:500;color:var(--text-muted);font-size:12px;">(34 ans)</span></div>
+                  <div class="pat-sub">G3P2 · FCU + Bilan gynécologique</div>
+                </td>
+                <td class="col-terme"><span class="terme-badge empty">—</span></td>
+                <td class="col-type"><span class="type-text">Gynécologie</span></td>
+                <td class="col-heure"><span class="heure-text">13:00</span></td>
+                <td class="col-statut"><button class="btn-navy">Ouvrir</button></td>
+              </tr>
+
+              <!-- Row 5 : DG -->
+              <tr>
+                <td>
+                  <div class="pat-name">Fatima Zeroual <span style="font-weight:500;color:var(--text-muted);font-size:12px;">(29 ans)</span></div>
+                  <div class="pat-sub">
+                    G2P1
+                    <span class="pat-alert">DG sous régime</span>
+                  </div>
+                </td>
+                <td class="col-terme"><span class="terme-badge late">36 SA</span></td>
+                <td class="col-type"><span class="type-text">Suivi 9<sup>e</sup> mois</span></td>
+                <td class="col-heure"><span class="heure-text">14:00</span></td>
+                <td class="col-statut"><button class="btn-navy">Ouvrir</button></td>
+              </tr>
+
+              <!-- Row 6 : Nouvelle patiente (Créer) -->
+              <tr style="background:#fefcfb;">
+                <td>
+                  <div class="pat-name" style="color:var(--text-muted);font-style:italic;">Nouvelle patiente</div>
+                  <div class="pat-sub">Dossier non encore créé</div>
+                </td>
+                <td class="col-terme"><span class="terme-badge empty">—</span></td>
+                <td class="col-type"><span class="type-text" style="color:var(--text-muted);">—</span></td>
+                <td class="col-heure"><span class="heure-text" style="color:var(--text-muted);">15:30</span></td>
+                <td class="col-statut"><button class="btn-outline">+ Créer</button></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div><!-- /card consultations -->
+      </div><!-- /main col -->
+
+      <!-- ── SIDEBAR ──────────────────────────────────────────────── -->
+      <div class="side-col">
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Consultations</div>
+            <div class="stat-value terra">6</div>
+            <div class="stat-sub">
+              <span class="stat-trend up">▲ +2</span> vs hier
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Patientes actives</div>
+            <div class="stat-value navy">47</div>
+            <div class="stat-sub">Suivi en cours</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Urgences</div>
+            <div class="stat-value" style="color:var(--danger);">1</div>
+            <div class="stat-sub">
+              <span class="stat-trend warn">● Action requise</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Sync SESAM</div>
+            <div class="stat-value" style="color:var(--success);font-size:16px;padding-top:2px;">● OK</div>
+            <div class="stat-sub">Dernière synchro 8h42</div>
+          </div>
+        </div>
+
+        <!-- Progression journée -->
+        <div class="card" style="padding:16px 18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:12px;font-weight:700;color:var(--text-primary);">Progression journée</span>
+            <span style="font-size:11px;font-weight:600;color:var(--text-muted);">1 / 6</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" style="width:17%;"></div>
+          </div>
+          <div style="font-size:10.5px;color:var(--text-muted);font-weight:500;margin-top:6px;">5 consultations restantes · fin estimée 15h45</div>
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="quick-card">
+          <div class="quick-header">
+            <div class="quick-title">Actions rapides</div>
+          </div>
+          <div class="quick-list">
+
+            <div class="quick-item">
+              <div class="quick-item-icon" style="background:#eff6ff;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="quick-item-text">Envoyer dossier maternité</div>
+                <div class="quick-item-sub">Sophie Giraud · Urgence</div>
+              </div>
+              <span class="quick-arrow">›</span>
+            </div>
+
+            <div class="quick-item">
+              <div class="quick-item-icon" style="background:#f0fdf4;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <div class="quick-item-text">Nouvelle ordonnance</div>
+                <div class="quick-item-sub">Élodie Martin · Suivi 7e mois</div>
+              </div>
+              <span class="quick-arrow">›</span>
+            </div>
+
+            <div class="quick-item">
+              <div class="quick-item-icon" style="background:#fff7ed;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+              </div>
+              <div>
+                <div class="quick-item-text">Télétransmettre FSE</div>
+                <div class="quick-item-sub">3 feuilles en attente</div>
+              </div>
+              <span class="quick-arrow">›</span>
+            </div>
+
+            <div class="quick-item">
+              <div class="quick-item-icon" style="background:#fdf4ff;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div>
+                <div class="quick-item-text">Messagerie CONECT'IAL</div>
+                <div class="quick-item-sub">2 messages non lus</div>
+              </div>
+              <span class="quick-arrow">›</span>
+            </div>
+
+          </div>
+        </div><!-- /quick card -->
+
+        <!-- To-do du jour -->
+        <div class="quick-card">
+          <div class="quick-header" style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="quick-title">À faire aujourd'hui</div>
+            <span style="font-size:10px;font-weight:600;color:var(--text-muted);">1/3 fait</span>
+          </div>
+          <div class="todo-list">
+            <div class="todo-item">
+              <div class="todo-check done">✓</div>
+              <span class="todo-text done">Préparer dossier Sophie Giraud</span>
+              <span class="todo-time">Fait</span>
+            </div>
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <span class="todo-text">Télétransmettre FSE semaine 38</span>
+              <span class="todo-time">Avant 17h</span>
+            </div>
+            <div class="todo-item">
+              <div class="todo-check"></div>
+              <span class="todo-text">Rappeler maternité Port-Royal</span>
+              <span class="todo-time">Après 14h</span>
+            </div>
+          </div>
+        </div><!-- /todo -->
+
+      </div><!-- /sidebar -->
+    </div><!-- /body-grid -->
+
+  </main><!-- /main-content -->
+
+  <!-- ═════════════════════ STATUS BAR ══════════════════════════════ -->
+  <div class="status-bar">
+    <div class="status-left">
+      <div class="status-item">
+        <span class="status-item-dot green"></span>
+        Serveur NatisFlow · En ligne
+      </div>
+      <div class="status-item">
+        <span class="status-item-dot green"></span>
+        SESAM-Vitale connecté
+      </div>
+      <div class="status-item">
+        <span class="status-item-dot orange"></span>
+        HDS certifié · Chiffrement actif
+      </div>
+    </div>
+    <div class="status-right">NatisFlow Pro v0.4.2 — Beta · 28/09/2026 09:07</div>
+  </div>
+
+</div><!-- /tablet-frame -->
+
+</body>
+</html>
